@@ -1,0 +1,33 @@
+% Main document orchestrator for Competencias Emprendedoras
+
+% Load preamble with packages and configuration
+\input{preamble.tex}
+
+% Load custom commands and environments
+\input{commands.tex}
+
+% Document metadata
+\title{Competencias Emprendedoras}
+\author{
+  Prof. Lic. Enriqueta Benítez \\
+  \small Notas compiladas por: Ing. Fernando Cardozo
+}
+\date{\today}
+
+\begin{document}
+
+% Title page
+\maketitle
+
+% Table of contents
+\tableofcontents
+\newpage
+
+% Content sections
+\input{content/01-propuesta-valor-branding.tex}
+\input{content/02-marketing-comercializacion.tex}
+\input{content/03-finanzas-personales.tex}
+\input{content/04-costos-precios.tex}
+\input{content/05-formalizacion-paraguay.tex}
+
+\end{document}
