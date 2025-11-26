@@ -7,6 +7,14 @@ Notas educativas sobre competencias emprendedoras para audiencia paraguaya.
 - **Autor original:** Prof. Lic. Enriqueta Benítez
 - **Notas compiladas por:** Ing. Fernando Cardozo
 
+## Descargar PDF
+
+**Última versión estable:** [Descargar PDF](https://github.com/fcardozo/snpp-emprendedurismo-notes/releases/latest/download/competencias-emprendedoras.pdf)
+
+**Todas las versiones:** [Ver releases](https://github.com/fcardozo/snpp-emprendedurismo-notes/releases)
+
+**Versión en desarrollo:** Los builds del código más reciente están disponibles en la [pestaña Actions](https://github.com/fcardozo/snpp-emprendedurismo-notes/actions/workflows/build-latex.yml) (requiere estar autenticado en GitHub).
+
 ## Compilar el documento
 
 ### Compilación local
@@ -23,12 +31,11 @@ El PDF se generará como `latex/main.pdf`.
 
 ### Compilación automática (CI/CD)
 
-El documento se compila automáticamente en GitHub Actions cada vez que se hace push a `main`. El PDF compilado está disponible como artifact en la pestaña Actions.
+El documento se compila automáticamente en GitHub Actions:
+- **En cada push a `main`:** Se genera un artifact disponible por 30 días
+- **Al crear un tag:** Se crea automáticamente un release con el PDF descargable
 
-Para descargar el PDF más reciente:
-1. Ve a la pestaña "Actions"
-2. Selecciona el workflow "Build LaTeX Document" más reciente
-3. Descarga el artifact "competencias-emprendedoras"
+Para crear una nueva versión, consulta `.github/VERSIONING.md`.
 
 ## Estructura del proyecto
 

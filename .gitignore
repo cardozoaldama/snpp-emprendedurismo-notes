@@ -11,6 +11,9 @@
 *.bbl
 *.blg
 
+# Auto-generated version file
+latex/version.tex
+
 # Output directory
 latex/output/
 

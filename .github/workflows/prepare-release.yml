@@ -1,0 +1,125 @@
+name: Prepare Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: "Tipo de versión / Version type"
+        required: true
+        default: "minor"
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
+      custom_version:
+        description: "Versión personalizada (opcional, ej: v1.0.0) / Custom version (optional, e.g.: v1.0.0)"
+        required: false
+        type: string
+      is_prerelease:
+        description: "Marcar como pre-release (añade -draft) / Mark as pre-release (adds -draft)"
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  prepare-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine new version
+        id: new_version
+        run: |
+          # If custom version provided, use it
+          if [[ -n "${{ inputs.custom_version }}" ]]; then
+            NEW_VERSION="${{ inputs.custom_version }}"
+            # Ensure it starts with 'v'
+            if [[ ! $NEW_VERSION =~ ^v ]]; then
+              NEW_VERSION="v${NEW_VERSION}"
+            fi
+          else
+            # Get current version
+            CURRENT=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.1.0")
+
+            # Remove 'v' prefix for parsing
+            CURRENT_NO_V=${CURRENT#v}
+
+            # Split version
+            IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_NO_V"
+            PATCH=${PATCH%%[-+]*}  # Remove any pre-release suffixes
+
+            # Calculate new version
+            case "${{ inputs.version_type }}" in
+              major)
+                MAJOR=$((MAJOR + 1))
+                MINOR=0
+                PATCH=0
+                ;;
+              minor)
+                MINOR=$((MINOR + 1))
+                PATCH=0
+                ;;
+              patch)
+                PATCH=$((PATCH + 1))
+                ;;
+            esac
+
+            NEW_VERSION="v${MAJOR}.${MINOR}.${PATCH}"
+          fi
+
+          # Add pre-release suffix if requested
+          if [[ "${{ inputs.is_prerelease }}" == "true" ]]; then
+            NEW_VERSION="${NEW_VERSION}-draft"
+          fi
+
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "Calculated version: $NEW_VERSION"
+
+      - name: Create tag and push
+        run: |
+          NEW_VERSION=${{ steps.new_version.outputs.NEW_VERSION }}
+
+          # Configure git
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Create annotated tag
+          if [[ "${{ inputs.is_prerelease }}" == "true" ]]; then
+            git tag -a "$NEW_VERSION" -m "Pre-release $NEW_VERSION"
+          else
+            git tag -a "$NEW_VERSION" -m "Release $NEW_VERSION"
+          fi
+
+          # Push tag
+          git push origin "$NEW_VERSION"
+
+          echo "Tag created and pushed: $NEW_VERSION"
+
+      - name: Success message
+        run: |
+          NEW_VERSION=${{ steps.new_version.outputs.NEW_VERSION }}
+          IS_PRE="${{ inputs.is_prerelease }}"
+
+          echo ""
+          echo "======================================"
+          echo "Etiqueta creada exitosamente / Tag created successfully"
+          echo "======================================"
+          echo "Versión / Version: $NEW_VERSION"
+          if [[ "$IS_PRE" == "true" ]]; then
+            echo "Tipo / Type: Pre-release (draft)"
+          else
+            echo "Tipo / Type: Release"
+          fi
+          echo ""
+          echo "Próximos pasos / Next steps:"
+          echo "1. GitHub Actions construirá automáticamente el documento / GitHub Actions will build automatically"
+          echo "2. Visita / Visit: https://github.com/${{ github.repository }}/releases"
+          echo "3. El PDF estará disponible / PDF will be available for download"
+          echo ""
