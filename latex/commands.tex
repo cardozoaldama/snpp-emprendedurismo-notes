@@ -59,3 +59,23 @@
 }{%
   \end{mdframed}
 }
+
+% WARNING callout (orange/yellow border)
+\newenvironment{calloutwarning}[1][Advertencia]{%
+  \begin{mdframed}[
+    linecolor=orange!80!red,
+    linewidth=2pt,
+    leftmargin=0pt,
+    rightmargin=0pt,
+    innerleftmargin=10pt,
+    innerrightmargin=10pt,
+    innertopmargin=8pt,
+    innerbottommargin=8pt,
+    skipabove=10pt,
+    skipbelow=10pt,
+    frametitle={\textbf{#1}},
+    frametitlefont=\bfseries\sffamily
+  ]
+}{%
+  \end{mdframed}
+}
