@@ -1,0 +1,51 @@
+% Document class configuration
+\documentclass[
+  12pt,
+  a4paper,
+  parskip=half,
+  headings=standardclasses,
+  numbers=noenddot,
+  bibliography=totoc,
+  listof=totoc,
+  spanish
+]{scrartcl}
+
+% Spanish language support
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{fontspec}
+\usepackage{csquotes}
+
+% Typography improvements
+\usepackage{microtype}
+\linespread{1.15}
+
+% Layout and structure
+\usepackage{scrlayer-scrpage}
+\usepackage{enumitem}
+
+% Tables and figures
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{graphicx}
+
+% Callout boxes
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+% Hyperlinks and references
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  urlcolor=blue!60!black,
+  breaklinks=true,
+  pdftitle={Competencias Emprendedoras},
+  pdfauthor={Prof. Lic. Enriqueta Benítez, Ing. Fernando Cardozo}
+}
+
+% Page style configuration
+\pagestyle{scrheadings}
+\ihead{Competencias Emprendedoras}
+\ohead{\pagemark}
+\cfoot{}
+\setkomafont{pageheadfoot}{\small\itshape}
