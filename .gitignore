@@ -17,3 +17,6 @@ latex/output/
 # System files
 .DS_Store
 Thumbs.db
+
+# Claude AI configuration
+.claude/
