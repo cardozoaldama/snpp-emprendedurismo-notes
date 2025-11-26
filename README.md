@@ -9,11 +9,11 @@ Notas educativas sobre competencias emprendedoras para audiencia paraguaya.
 
 ## Descargar PDF
 
-**Última versión estable:** [Descargar PDF](https://github.com/fcardozo/snpp-emprendedurismo-notes/releases/latest/download/competencias-emprendedoras.pdf)
+**Última versión estable:** [Descargar PDF](https://github.com/cardozoaldama/snpp-emprendedurismo-notes/releases/latest/download/competencias-emprendedoras.pdf)
 
-**Todas las versiones:** [Ver releases](https://github.com/fcardozo/snpp-emprendedurismo-notes/releases)
+**Todas las versiones:** [Ver releases](https://github.com/cardozoaldama/snpp-emprendedurismo-notes/releases)
 
-**Versión en desarrollo:** Los builds del código más reciente están disponibles en la [pestaña Actions](https://github.com/fcardozo/snpp-emprendedurismo-notes/actions/workflows/build-latex.yml) (requiere estar autenticado en GitHub).
+**Versión en desarrollo:** Los builds del código más reciente están disponibles en la [pestaña Actions](https://github.com/cardozoaldama/snpp-emprendedurismo-notes/actions/workflows/build-latex.yml) (requiere estar autenticado en GitHub).
 
 ## Compilar el documento
 
