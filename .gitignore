@@ -1,0 +1,19 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.bcf
+*.run.xml
+*.bbl
+*.blg
+
+# Output directory
+latex/output/
+
+# System files
+.DS_Store
+Thumbs.db
