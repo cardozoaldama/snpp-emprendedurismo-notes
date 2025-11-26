@@ -7,6 +7,7 @@
   numbers=noenddot,
   bibliography=totoc,
   listof=totoc,
+  titlepage=firstiscover,
   spanish
 ]{scrartcl}
 
@@ -19,9 +20,32 @@
 \usepackage{microtype}
 \linespread{1.15}
 
+% Widow and orphan control
+\widowpenalty=9000          % Penalty for breaking before last line of paragraph
+\clubpenalty=9000           % Penalty for breaking after first line of paragraph
+\displaywidowpenalty=9000   % Penalty for breaking before last line before display
+\brokenpenalty=4500         % Penalty for page break after hyphenated line
+
+% Allow flexible page heights to accommodate penalties
+\raggedbottom
+
 % Layout and structure
 \usepackage{scrlayer-scrpage}
 \usepackage{enumitem}
+\usepackage{needspace}
+
+% Prevent orphaned section headings (heading at bottom with no text)
+\RedeclareSectionCommand[
+  beforeskip=3ex plus 1ex minus .2ex,
+  afterskip=1.5ex plus .2ex,
+  runin=false
+]{section}
+
+\RedeclareSectionCommand[
+  beforeskip=2.5ex plus .5ex minus .2ex,
+  afterskip=1.5ex plus .2ex,
+  runin=false
+]{subsection}
 
 % Tables and figures
 \usepackage{booktabs}
