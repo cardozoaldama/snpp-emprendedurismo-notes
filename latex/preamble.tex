@@ -73,3 +73,29 @@
 \ohead{\pagemark}
 \cfoot{\small\itshape Versión \docversion{} -- \builddate}
 \setkomafont{pageheadfoot}{\small\itshape}
+
+% Custom title page with perfect vertical and horizontal centering
+\newcommand{\makecustomtitle}{%
+  \begin{titlepage}
+    \centering  % Horizontal centering
+    \vspace*{\fill}  % Flexible space at top
+
+    % Title
+    {\usekomafont{title}\huge\bfseries Competencias Emprendedoras\par}
+
+    \vspace{2em}  % Space between title and author
+
+    % Author
+    {\usekomafont{author}\large
+      Prof. Lic. Enriqueta Benítez\\[0.5em]
+      \normalsize Notas compiladas por: Ing. Fernando Cardozo\par
+    }
+
+    \vspace{1.5em}  % Space between author and date
+
+    % Date
+    {\usekomafont{date}\large\today\par}
+
+    \vspace*{\fill}  % Flexible space at bottom (equal to top)
+  \end{titlepage}
+}
