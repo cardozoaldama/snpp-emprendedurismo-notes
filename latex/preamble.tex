@@ -102,5 +102,9 @@
 
 % Center the table of contents title (Índice)
 \usepackage{etoolbox}
-\patchcmd{\tableofcontents}{\section*{\contentsname}}{\section*{\centering\contentsname}}{}{}
-\addtokomafont{sectionentry}{\normalfont}
+\newcommand{\centeredtableofcontents}{%
+  \begingroup
+  \renewcommand{\raggedsection}{\centering}%
+  \tableofcontents
+  \endgroup
+}
